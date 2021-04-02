@@ -24,7 +24,7 @@ object CommandCreator {
                             Main.isEnable = false
                         }
                         "set" -> {
-                            walkSpeed = args.getOrNull(1)?.toFloatOrNull() ?: 0.1f
+                            walkSpeed = args.getOrNull(1)?.toDoubleOrNull() ?: 0.1
                             sender.send("速度を${walkSpeed}に設定しました")
                         }
                     }
