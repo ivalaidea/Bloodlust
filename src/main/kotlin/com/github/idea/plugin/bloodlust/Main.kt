@@ -6,19 +6,22 @@ import org.bukkit.plugin.java.JavaPlugin
 class Main : JavaPlugin() {
     companion object {
         internal lateinit var plugin: JavaPlugin
+        var isEnable = false
+        var walkSpeed = 0.1f
     }
 
     init {
         plugin = this
     }
 
-    var walkSpeed = 0.1f
-
     override fun onEnable() {
+        CommandCreator.register()
         runTaskTimer(1 * 20, async = true) {
-            walkSpeed += 0.001f
-            server.onlinePlayers.forEach {
-                it.walkSpeed = walkSpeed
+            if (isEnable) {
+                walkSpeed += 0.001f
+                server.onlinePlayers.forEach {
+                    it.walkSpeed = walkSpeed
+                }
             }
         }
     }
